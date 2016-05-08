@@ -1,0 +1,25 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "name": "DogMeet",
+  "description": "Your one stop for everything dog",
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "shelljs": "^0.2.6",
+	   "express" : "*",
+     "multer": "~0.1.6",
+     "mysql": "2.9.0",
+     "body-parser": "^1.7.0",
+     "ejs": "^1.0.0",
+     "express-session": "1.12.1",
+     "sequelize": "^3.0.0",
+     "connect-session-sequelize": "^2.3.1"
+  },
+   "scripts": {
+
+    "prestart": "npm install",
+    "start": "nodemon serverInit.js",
+
+    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + cat('bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
+  }
+}
