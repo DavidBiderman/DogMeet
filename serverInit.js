@@ -15,33 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 sql.startDB(); 
 
-// var modelFactory = sql.getModelFactory;
-
-// var dmUser = modelFactory().createDMUser();
-// var dmDog = modelFactory().createDMDog();
-
-// dmUser.hasMany(dmDog); 
-
-// dmUser.sync().then(function (data){
-// 	console.log("Users Synced");
-// }).catch (function (err){
-// 	throw new error(err);
-// });
-
-// dmDog.sync().then(function (data){
-// 	console.log("Dogs Synced")
-// }).catch(function (err){
-// 	throw new error(err);
-// })
-
-// var testUser = dmUser.build({
-// 	FirstName: "David",
-// 	LastName: "Biderman",
-// 	Radius: 6.37,
-// 	DeviceID: "Fk3D-HH1L-R0f8-GGo5-RR33"
-// });
-
-
 app.get('/', function (req, res){
 	var test = {
 		firstName: "Eric",
