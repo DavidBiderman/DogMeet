@@ -13,40 +13,48 @@ app.use(express.static(__dirname +'/public'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-var modelFactory = sql.getModelFactory;
+sql.startDB(); 
 
-var dmUser = modelFactory().createDMUser();
-var dmDog = modelFactory().createDMDog();
+// var modelFactory = sql.getModelFactory;
 
-dmUser.hasMany(dmDog); 
+// var dmUser = modelFactory().createDMUser();
+// var dmDog = modelFactory().createDMDog();
 
-dmUser.sync().then(function (data){
-	console.log("Users Synced");
-}).catch (function (err){
-	throw new error(err);
-});
+// dmUser.hasMany(dmDog); 
 
-dmDog.sync().then(function (data){
-	console.log("Dogs Synced")
-}).catch(function (err){
-	throw new error(err);
-})
+// dmUser.sync().then(function (data){
+// 	console.log("Users Synced");
+// }).catch (function (err){
+// 	throw new error(err);
+// });
 
-var testUser = dmUser.build({
-	FirstName: "David",
-	LastName: "Biderman",
-	Radius: 6.37,
-	DeviceID: "Fk3D-HH1L-R0f8-GGo5-RR33"
-});
+// dmDog.sync().then(function (data){
+// 	console.log("Dogs Synced")
+// }).catch(function (err){
+// 	throw new error(err);
+// })
+
+// var testUser = dmUser.build({
+// 	FirstName: "David",
+// 	LastName: "Biderman",
+// 	Radius: 6.37,
+// 	DeviceID: "Fk3D-HH1L-R0f8-GGo5-RR33"
+// });
 
 
 app.get('/', function (req, res){
-	// console.log(req.body);
-	testUser.save().then(function (data){
-		res.writeHeader(200, {"Content-Type": "text/html"});  
-		res.write(data.dataValues.toString());  
+	var test = {
+		firstName: "Eric",
+		lastName: "Schoff",
+		radius: 5.29,
+		deviceID: "ik5E-HK7D-P01c-JXk3-31mX"
+	}
+	sql.insertNewClient(test, function (responseData){
+		res.writeHeader(200, {"Content-Type": "text/html"})
+		res.write(JSON.stringify(responseData, null, 4))
 		res.end();
-	})
+	});
+
 })
 
 
